@@ -74,7 +74,7 @@ const UserList = () => {
             <ListItem>
               <Button
                 startIcon={x.icon}
-                sx={!mobileDrive ? { color: "#6ccfad" } : { color: "#000" }}
+                sx={{ color: "#6ccfad" } }
               >
                 {x.title}
               </Button>

@@ -1,18 +1,20 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import React from "react";
 import MineTitle from "../MineTitle";
+import { Store } from "../../context/DataStore";
 
 const OurCompany = () => {
+  const {mobileDrive}=Store()
   return (
     <Box>
       <Container>
         <MineTitle title={"Our Company"} />
-        <Grid container spacing={1}>
+        <Grid container spacing={1} flexDirection={mobileDrive &&"column-reverse"}>
           <Grid item md={7} xs={12}>
           <Typography variant="h6" my={2} fontWeight={600}>
             lorem ipsum dolor sit amet, consectetur adip
           </Typography>
-            <Typography component={'p'} width={'75%'}mt={1} >
+            <Typography component={'p'} width={mobileDrive?"100%":'75%'}mt={1} >
 
             While every individual component of a CSS linear gradient is just as
             important as the next, no cake would be complete without its icing.
@@ -29,7 +31,7 @@ const OurCompany = () => {
             color blends with the next. These positions can be set in
             percentages or pixels, depending on which is easier for you.{" "}
             </Typography>
-            <Typography component={'p'} width={'75%'}mt={1} >
+            <Typography component={'p'} width={mobileDrive?"100%":'75%'}mt={1} >
 
             <strong > While </strong> every individual component of a CSS linear gradient is just as
             important as the next, no cake would be complete without its icing.

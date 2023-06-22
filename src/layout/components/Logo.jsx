@@ -7,7 +7,6 @@ const Logo = () => {
   return (
     <Box width={160}>
       <Link to={'/'}>
-
       <img src={logo} alt="ddd" width={80} style={{borderRadius :'10px'}} />
       </Link>
       <Typography fontSize={10}>

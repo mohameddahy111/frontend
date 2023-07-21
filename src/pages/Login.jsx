@@ -17,6 +17,7 @@ import axios from "axios";
 import { Store } from "../context/DataStore";
 
 const Login = () => {
+  
   const {setUserInfo} = Store()
   const navigate = useNavigate();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -37,7 +38,7 @@ const Login = () => {
       password: "",
     },
     onSubmit: async (values) => {
-      await axios.post("/user/sign_in", values).then((res) => {
+      await axios.post("https://madical.vercel.app/user/sign_in", values).then((res) => {
         if (res.data.message === "login successful") {
           localStorage.setItem("userInfo", JSON.stringify(res.data.data));
           setUserInfo(res.data.data)

@@ -2,43 +2,27 @@ import {
   DarkMode,
   LightMode,
   LoginOutlined,
-  NightlightRound,
-  NightsStay,
   SearchOutlined,
   ShoppingBagOutlined,
 } from "@mui/icons-material";
 import {
+  Badge,
   Box,
   Button,
-  IconButton,
   List,
   ListItem,
-  ListItemText,
   Switch,
   Tooltip,
 } from "@mui/material";
 import React from "react";
 import { Store } from "../../context/DataStore";
+import { useNavigate } from "react-router-dom";
+import AvatarMune from "./AvatarMune";
 
 const UserList = () => {
-  const { mobileDrive, mode, setMode } = Store();
+  const navigate = useNavigate();
+  const { mobileDrive, mode, setMode, cartItems, userInfo } = Store();
 
-  const list = [
-    {
-      title: "Search",
-      icon: <SearchOutlined />,
-    },
-    {
-      title: " login",
-      icon: <LoginOutlined />,
-      link: "/login",
-    },
-    {
-      title: "Cart",
-      icon: <ShoppingBagOutlined />,
-      link: "/cart",
-    },
-  ];
   const changeMode = () => {
     let newMmode = "";
     if (mode === "dark") {
@@ -67,20 +51,53 @@ const UserList = () => {
           checkedIcon={<LightMode sx={{ color: "#f0c000" }} />}
           onChange={() => changeMode()}
           value={mode}
-        checked={mode === "dark" ? true: false}
+          checked={mode === "dark" ? true : false}
         />
-        {list.map((x, index) => (
-          <Tooltip title={x.title} key={index}>
-            <ListItem>
+        <ListItem>
+          <Tooltip title={"Cart"}>
+            <Badge
+              badgeContent={cartItems.length}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              color="error"
+            >
               <Button
-                startIcon={x.icon}
-                sx={{ color: "#6ccfad" } }
-              >
-                {x.title}
-              </Button>
-            </ListItem>
+                startIcon={<ShoppingBagOutlined />}
+                sx={{ color: "#6ccfad" }}
+                onClick={() => navigate(`/cart`)}
+              ></Button>
+            </Badge>
           </Tooltip>
-        ))}
+        </ListItem>
+        <ListItem>
+          {userInfo ? (
+                <AvatarMune user={userInfo}/>
+          ) : (
+            <Tooltip
+              title={ "Login"}
+            >
+              <Button
+                startIcon={<LoginOutlined />}
+                sx={{ color: "#6ccfad" }}
+                onClick={() => navigate(`/login`)}
+              >
+                login
+              </Button>
+            </Tooltip>
+          )}
+        </ListItem>
+        <ListItem>
+        <Button
+                startIcon={<SearchOutlined />}
+                sx={{ color: "#6ccfad" }}
+                onClick={() => navigate(`/search`)}
+              >
+                search
+              </Button>
+
+        </ListItem>
       </List>
     </Box>
   );

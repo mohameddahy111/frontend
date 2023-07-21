@@ -72,6 +72,7 @@ export default function Layout() {
   const { mobileDrive , mode } = Store();
 
   const drowerTheme = createTheme({
+  
     
     palette: {
       mode:mode,
@@ -101,7 +102,6 @@ export default function Layout() {
     } else {
       setWindowScroll(false);
     }
-    console.log("hiiii");
   };
   window.addEventListener("scroll", () => {
     getWindowScroll();
@@ -110,13 +110,13 @@ export default function Layout() {
     <ThemeProvider theme={drowerTheme}>
       <CssBaseline />
 
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex" }} >
         <CssBaseline />
         <AppBar
           position="fixed"
           open={open}
           color={windowScroll ? "secondary" : "transparent"}
-          sx={windowScroll ? { opacity: 0.95 } : { boxShadow: "none" }}
+          sx={windowScroll ? { opacity: 0.95 } : { boxShadow: "none"}}
           
         >
           <Toolbar
